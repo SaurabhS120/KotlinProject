@@ -10,12 +10,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,10 +32,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.example.project.data.Task
 import org.example.project.data.TaskRepository
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TasksScreen(
     repository: TaskRepository,
+    onNavigateBack: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     val tasks by repository.tasks.collectAsState(emptyList())
@@ -39,7 +47,20 @@ fun TasksScreen(
     var editingTask by remember { mutableStateOf<Task?>(null) }
     val scope = rememberCoroutineScope()
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Tasks") },
+                navigationIcon = {
+                    if (onNavigateBack != null) {
+                        IconButton(onClick = onNavigateBack) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                        }
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -47,8 +68,6 @@ fun TasksScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.Top
         ) {
-            Text("Tasks", style = MaterialTheme.typography.headlineMedium)
-
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 items(tasks) { task ->
                     Row(

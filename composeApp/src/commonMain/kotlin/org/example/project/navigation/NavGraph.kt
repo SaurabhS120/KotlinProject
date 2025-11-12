@@ -52,11 +52,15 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(route = Screen.Tasks.route) {
-            TasksScreen(repository = TaskRepoProvider.repo)
+            TasksScreen(
+                repository = TaskRepoProvider.repo,
+                onNavigateBack = { navController.popBackStack() })
         }
 
         composable(route = Screen.Notes.route) {
-            NotesScreen(repository = NoteRepoProvider.repository)
+            NotesScreen(
+                repository = NoteRepoProvider.repository,
+                onNavigateBack = { navController.popBackStack() })
         }
     }
 }
