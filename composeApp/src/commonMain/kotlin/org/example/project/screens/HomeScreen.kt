@@ -34,6 +34,7 @@ import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.compose_multiplatform
 import org.example.project.DummyJson
 
+@Preview
 @Composable
 fun HomeScreen(
     onNavigateToDetails: () -> Unit,
