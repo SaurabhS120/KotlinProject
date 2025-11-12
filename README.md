@@ -1,4 +1,10 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# KotlinProject
+
+Screenshot:
+
+<img src="screen%20shots/Screenshot_20251112_183806.png" width="300" alt="App Screenshot" />
+Description: Basic Compose Multiplatform sample with Notes (SQLDelight) and Tasks screens.This is a
+Kotlin Multiplatform project targeting Android, iOS.
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:

@@ -1,0 +1,21 @@
+CREATE TABLE notes (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  content TEXT DEFAULT '',
+  created_at INTEGER NOT NULL
+);
+
+selectAllNotes:
+SELECT * FROM notes ORDER BY created_at DESC;
+
+selectNoteById:
+SELECT * FROM notes WHERE id = ?;
+
+insertNote:
+INSERT INTO notes(title, content, created_at) VALUES (?, ?, ?);
+
+updateNote:
+UPDATE notes SET title = ?, content = ? WHERE id = ?;
+
+deleteNote:
+DELETE FROM notes WHERE id = ?;

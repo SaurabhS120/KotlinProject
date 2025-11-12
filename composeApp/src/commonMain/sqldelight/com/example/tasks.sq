@@ -1,0 +1,21 @@
+CREATE TABLE tasks (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  description TEXT DEFAULT '',
+  completed INTEGER NOT NULL DEFAULT 0
+);
+
+selectAll:
+SELECT * FROM tasks;
+
+selectById:
+SELECT * FROM tasks WHERE id = ?;
+
+insertTask:
+INSERT INTO tasks(title, description, completed) VALUES (?, ?, ?);
+
+updateTask:
+UPDATE tasks SET title = ?, description = ?, completed = ? WHERE id = ?;
+
+deleteTask:
+DELETE FROM tasks WHERE id = ?;
