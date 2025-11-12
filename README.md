@@ -2,8 +2,9 @@
 
 Screenshot:
 
-![App Screenshot](<screen shots/Screenshot_20251112_183806.png>)
++
 
++<img src="screen%20shots/Screenshot_20251112_183806.png" width="300" alt="App Screenshot" />
 Description: Basic Compose Multiplatform sample with Notes (SQLDelight) and Tasks screens.This is a
 Kotlin Multiplatform project targeting Android, iOS.
 
