@@ -19,6 +19,8 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -30,6 +32,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.compose_multiplatform
+import org.example.project.DummyJson
 
 @Composable
 fun HomeScreen(
@@ -39,6 +42,10 @@ fun HomeScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val greeting = remember { Greeting().greet() }
+    val response = remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(Unit) {
+        response.value = DummyJson().get()
+    }
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
@@ -104,6 +111,23 @@ fun HomeScreen(
             ) {
                 Text("Show Snackbar")
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedButton(
+                onClick = {
+                    scope.launch {
+                        response.value = "Loading data ..."
+                        response.value = DummyJson().get()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Call dummy api")
+            }
+            Text(
+                response.value ?: "No response"
+            )
         }
     }
 }

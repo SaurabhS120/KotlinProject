@@ -44,6 +44,18 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+        }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        androidMain.dependencies {
+            implementation(libs.kotlinx.coroutines.android)
+        }
     }
 }
 
