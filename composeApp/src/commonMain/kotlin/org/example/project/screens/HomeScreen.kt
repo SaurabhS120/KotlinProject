@@ -38,7 +38,8 @@ import org.example.project.DummyJson
 fun HomeScreen(
     onNavigateToDetails: () -> Unit,
     onNavigateToProfile: () -> Unit,
-    onNavigateToTasks: () -> Unit = {}
+    onNavigateToTasks: () -> Unit = {},
+    onNavigateToNotes: () -> Unit = {}
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -103,6 +104,15 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Go to Tasks")
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OutlinedButton(
+                onClick = onNavigateToNotes,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Go to Notes (SQLDelight)")
             }
 
             Spacer(modifier = Modifier.height(16.dp))

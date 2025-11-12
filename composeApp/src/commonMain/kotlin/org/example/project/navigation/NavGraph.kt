@@ -8,7 +8,9 @@ import org.example.project.screens.DetailsScreen
 import org.example.project.screens.HomeScreen
 import org.example.project.screens.ProfileScreen
 import org.example.project.screens.TasksScreen
+import org.example.project.screens.NotesScreen
 import org.example.project.data.TaskRepoProvider
+import org.example.project.data.NoteRepoProvider
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -26,6 +28,9 @@ fun NavGraph(navController: NavHostController) {
                 },
                 onNavigateToTasks = {
                     navController.navigate(Screen.Tasks.route)
+                },
+                onNavigateToNotes = {
+                    navController.navigate(Screen.Notes.route)
                 }
             )
         }
@@ -48,6 +53,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(route = Screen.Tasks.route) {
             TasksScreen(repository = TaskRepoProvider.repo)
+        }
+
+        composable(route = Screen.Notes.route) {
+            NotesScreen(repository = NoteRepoProvider.repository)
         }
     }
 }
