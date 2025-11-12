@@ -37,7 +37,8 @@ import org.example.project.DummyJson
 @Composable
 fun HomeScreen(
     onNavigateToDetails: () -> Unit,
-    onNavigateToProfile: () -> Unit
+    onNavigateToProfile: () -> Unit,
+    onNavigateToTasks: () -> Unit = {}
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -93,6 +94,15 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Go to Profile")
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OutlinedButton(
+                onClick = onNavigateToTasks,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Go to Tasks")
             }
 
             Spacer(modifier = Modifier.height(16.dp))

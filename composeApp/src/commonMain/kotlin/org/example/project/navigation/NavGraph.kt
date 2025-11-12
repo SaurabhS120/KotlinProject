@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import org.example.project.screens.DetailsScreen
 import org.example.project.screens.HomeScreen
 import org.example.project.screens.ProfileScreen
+import org.example.project.screens.TasksScreen
+import org.example.project.data.TaskRepoProvider
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -21,6 +23,9 @@ fun NavGraph(navController: NavHostController) {
                 },
                 onNavigateToProfile = {
                     navController.navigate(Screen.Profile.route)
+                },
+                onNavigateToTasks = {
+                    navController.navigate(Screen.Tasks.route)
                 }
             )
         }
@@ -39,6 +44,10 @@ fun NavGraph(navController: NavHostController) {
                     navController.popBackStack()
                 }
             )
+        }
+
+        composable(route = Screen.Tasks.route) {
+            TasksScreen(repository = TaskRepoProvider.repo)
         }
     }
 }
